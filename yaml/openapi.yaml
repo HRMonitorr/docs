@@ -20,14 +20,12 @@ tags:
     description: Pengelolaan Data User
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://petapedia.github.io/UsersBackend
+      url: https://hrmonitorr.github.io/UsersBackend
   - name: auth
     description: Auth to Access to API
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://petapedia.github.io/UsersBackend
-  - name: user
-    description: Get Token and Authorize
+      url: https://hrmonitorr.github.io/UsersBackend
 paths:
   /RegisterUser:
     post:
