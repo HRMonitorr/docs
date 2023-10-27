@@ -104,6 +104,11 @@ paths:
       summary: Update data User Khusus Admin
       description: Header auth for admin only
       operationId: Updatedataemployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Updated'
       responses:
         '200':
           description: successful operation
@@ -112,14 +117,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/responseUser'
+                  $ref: '#/components/schemas/ResponseEmployee'
         '400':
           description: Invalid status value
       security:
         - Login:
           - write:apiKey
           - read:apiKey
-
+  /InsertDataEmployee:
+    post:
+      tags:
+        - employee
+      summary: Insert data Employee Khusus Admin
+      description: Header auth for admin only
+      operationId: InsertdataEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseEmployee'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
 components:
   schemas:
     user:
@@ -164,6 +195,74 @@ components:
             role:
               type: string
               example: user
+    ResponseBack:
+          type: object
+          properties:
+            Status:
+              type: integer
+              format: int32
+            Message:
+              type: string
+            Data:
+              type: array
+              items:
+                type: string
+    User:
+          type: object
+          properties:
+            Username:
+              type: string
+              description: The username of the user
+            Password:
+              type: string
+              description: The password of the user
+            Role:
+              type: string
+              description: The role of the user
+
+    ResponseEmployee:
+      type: object
+      properties:
+        Status:
+          type: integer
+          format: int32
+        Message:
+          type: string
+        Data:
+          $ref: '#/components/schemas/Employee'
+
+    Employee:
+      type: object
+      properties:
+        EmployeeId:
+          type: string
+        Name:
+          type: string
+        Email:
+          type: string
+        Phone:
+          type: string
+        Division:
+          $ref: '#/components/schemas/Division'
+        Account:
+          $ref: '#/components/schemas/User'
+
+    Division:
+      type: object
+      properties:
+        DivId:
+          type: integer
+          format: int32
+        DivName:
+          type: string
+
+    Updated:
+      type: object
+      properties:
+        Email:
+          type: string
+        Phone:
+          type: string
     Auth:
       type: object
       properties:
