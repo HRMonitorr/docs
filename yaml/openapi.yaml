@@ -26,6 +26,11 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://hrmonitorr.github.io/UsersBackend
+  - name: employee
+    description: Auth to Access to API
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://hrmonitorr.github.io/UsersBackend
 paths:
   /RegisterUser:
     post:
@@ -77,6 +82,28 @@ paths:
       summary: Get Data User Khusus Admin
       description: Header auth for admin only
       operationId: GetdataUser
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+  /updatedataemployee:
+    put:
+      tags:
+        - employee
+      summary: Update data User Khusus Admin
+      description: Header auth for admin only
+      operationId: Updatedataemployee
       responses:
         '200':
           description: successful operation
