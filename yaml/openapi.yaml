@@ -14,7 +14,7 @@ externalDocs:
   description: Website kami
   url: https://hrmonitorr.github.io
 servers:
-  - url: https://asia-southeast2-gis-project-401902.cloudfunctions.net
+  - url: https://asia-southeast2-gis-project-401902.cloudfunctions.net/
 tags:
   - name: Users
     description: Pengelolaan Data User
@@ -151,6 +151,33 @@ paths:
         - Login:
           - write:apiKey
           - read:apiKey
+  /deleteuser:
+    delete:
+      tags:
+        - Users
+      summary: delete Khusus Admin
+      description: Header auth for admin only
+      operationId: DeleteUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqUsers'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cred'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
 components:
   schemas:
     user:
@@ -230,7 +257,20 @@ components:
           type: string
         Data:
           $ref: '#/components/schemas/Employee'
+    Cred:
+      type: object
+      properties:
+        Status:
+          type: integer
+          format: int32
+        Message:
+          type: string
 
+    ReqUsers:
+      type: object
+      properties:
+        Username:
+          type: string
     Employee:
       type: object
       properties:
