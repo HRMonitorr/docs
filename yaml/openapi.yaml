@@ -151,6 +151,30 @@ paths:
         - Login:
           - write:apiKey
           - read:apiKey
+
+  /get-all-employee:
+    get:
+      tags:
+        - employee
+      summary: Get data Employee
+      description: Header auth for admin and HR
+      operationId: GetDataEmployee
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
   /deleteuser:
     delete:
       tags:
@@ -178,6 +202,35 @@ paths:
         - Login:
           - write:apiKey
           - read:apiKey
+
+  /delete-employee:
+    delete:
+      tags:
+        - employee
+      summary: delete data employee
+      description: Header auth for admin and HR
+      operationId: DeleteEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEmployee'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cred'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
 components:
   schemas:
     user:
@@ -266,6 +319,12 @@ components:
         Message:
           type: string
 
+    RequestEmployee:
+      type: object
+      properties:
+        employeeid:
+          type: string
+
     ReqUsers:
       type: object
       properties:
@@ -274,18 +333,20 @@ components:
     Employee:
       type: object
       properties:
-        EmployeeId:
+        employeeid:
           type: string
-        Name:
+        name:
           type: string
-        Email:
+        email:
           type: string
-        Phone:
+        phone:
           type: string
-        Division:
+        division:
           $ref: '#/components/schemas/Division'
-        Account:
+        account:
           $ref: '#/components/schemas/User'
+        salary:
+          $ref: '#/components/schemas/Salary'
 
     Division:
       type: object
@@ -295,6 +356,14 @@ components:
           format: int32
         DivName:
           type: string
+    
+    Salary:
+      type: object
+      properties:
+        basic-salary:
+          type: integer
+        honor-division:
+          type: integer
 
     Updated:
       type: object
