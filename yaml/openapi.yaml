@@ -152,6 +152,35 @@ paths:
           - write:apiKey
           - read:apiKey
 
+  /one-employee:
+    post:
+      tags:
+        - employee
+      summary: Get Data Employee by employeeid
+      description: Header auth for admin only
+      operationId: GetOneEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEmployee'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseEmployee'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
+
   /get-all-employee:
     get:
       tags:
