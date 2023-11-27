@@ -12,7 +12,7 @@ info:
   version: 1.0.11
 externalDocs:
   description: Website kami
-  url: https://hrmonitorr.github.io
+  url: https://hrmonitor.advocata.me
 servers:
   - url: https://asia-southeast2-gis-project-401902.cloudfunctions.net/
 tags:
@@ -20,17 +20,17 @@ tags:
     description: Pengelolaan Data User
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://hrmonitorr.github.io/UsersBackend
+      url: https://hrmonitor.advocata.me/UsersBackend
   - name: auth
     description: Auth to Access to API
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://hrmonitorr.github.io/UsersBackend
+      url: https://hrmonitor.advocata.me/UsersBackend
   - name: employee
     description: Auth to Access to API
     externalDocs:
       description: Deskripsi dan Kode Program
-      url: https://hrmonitorr.github.io/UsersBackend
+      url: https://hrmonitor.advocata.me/UsersBackend
 paths:
   /RegisterUser:
     post:
