@@ -276,6 +276,57 @@ paths:
           - write:apiKey
           - read:apiKey
 
+  /salarycalc:
+    post:
+      tags:
+        - salary
+      summary: Kalkulasi data gaji employee
+      description: Mnegkalkulasikan satu kali perbulan
+      operationId: salarycalc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEmployee'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WageCalc'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
+  /salaryall:
+    get:
+      tags:
+        - salary
+      summary: Kalkulasi data gaji employee
+      description: mengambil semua data gaji
+      operationId: salaryall
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WageCalc'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
 
   /get-all-employee:
     get:
@@ -543,6 +594,36 @@ components:
           type: string
           nullable: true
           description: The homepage URL of the repository.
+    WageCalc:
+      type: object
+      properties:
+        employeeName:
+          type: string
+          description: The name of the employee.
+        jumlahCommit:
+          type: integer
+          description: The number of commits made by the employee.
+        basicSalary:
+          type: integer
+          description: The basic salary of the employee.
+        honorDivision:
+          type: integer
+          description: The honor division.
+        insentifCommits:
+          type: integer
+          description: The incentive for commits.
+        jumlahKotor:
+          type: integer
+          description: The gross salary.
+        tax:
+          type: integer
+          description: The tax amount.
+        nettSalary:
+          type: integer
+          description: The net salary.
+        month:
+          type: string
+          description: The month for which the salary is calculated.
     
     Salary:
       type: object
