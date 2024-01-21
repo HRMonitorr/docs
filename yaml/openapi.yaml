@@ -95,6 +95,27 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
+  /commit-lifetime:
+    post:
+      tags:
+        - Github API
+      summary: getCommit data dari repository
+      description: Mengambil Commit Repository
+      operationId: commit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyReq'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commits'
+        '405':
+          description: Invalid input
 
   /GetUserWithToken:
     get:
@@ -384,6 +405,43 @@ components:
         otp-code:
           type: string
 
+    Commits:
+      type: object
+      properties:
+        author:
+          type: string
+          nullable: true
+          description: The author of the commit.
+        repos:
+          type: string
+          nullable: true
+          description: The repository associated with the commit.
+        email:
+          type: string
+          nullable: true
+          description: The email of the commit author.
+        comment:
+          type: string
+          nullable: true
+          description: The comment associated with the commit.
+        date:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date and time of the commit.
+
+    BodyReq:
+      type: object
+      properties:
+        ownerName:
+          type: string
+          description: The owner's name.
+        repoName:
+          type: string
+          description: The name of the repository.
+      required:
+        - ownerName
+        - repoName
     ReqUsers:
       type: object
       properties:
