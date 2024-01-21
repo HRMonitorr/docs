@@ -351,33 +351,33 @@ paths:
           - write:apiKey
           - read:apiKey
 
-  /deleteuser:
-    delete:
-      tags:
-        - Users
-      summary: delete Khusus Admin
-      description: Header auth for admin only
-      operationId: DeleteUsers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReqUsers'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Cred'
-        '400':
-          description: Invalid status value
-      security:
-        - Login:
-          - write:apiKey
-          - read:apiKey
+  # /deleteuser:
+  #   delete:
+  #     tags:
+  #       - Users
+  #     summary: delete Khusus Admin
+  #     description: Header auth for admin only
+  #     operationId: DeleteUsers
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ReqUsers'
+  #     responses:
+  #       '200':
+  #         description: successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: '#/components/schemas/Cred'
+  #       '400':
+  #         description: Invalid status value
+  #     security:
+  #       - Login:
+  #         - write:apiKey
+  #         - read:apiKey
 
   /delete-employee:
     delete:
