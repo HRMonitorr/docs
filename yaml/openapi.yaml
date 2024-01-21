@@ -116,6 +116,60 @@ paths:
                 $ref: '#/components/schemas/Commits'
         '405':
           description: Invalid input
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+  /getandinsert:
+    post:
+      tags:
+        - Github API
+      summary: getCommit data dan insert ke database dari repository
+      description: Mengambil Commit Repository
+      operationId: commit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyReq'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commits'
+        '405':
+          description: Invalid input
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+  /listrepositories:
+    post:
+      tags:
+        - Github API
+      summary: get repositories data organization
+      description: Mengambil list Repository
+      operationId: repo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyReq'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repositories'
+        '405':
+          description: Invalid input
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
 
   /GetUserWithToken:
     get:
@@ -473,6 +527,22 @@ components:
           format: int32
         DivName:
           type: string
+
+    Repositories:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: The name of the repository.
+        full-name:
+          type: string
+          nullable: true
+          description: The full name of the repository.
+        homepage:
+          type: string
+          nullable: true
+          description: The homepage URL of the repository.
     
     Salary:
       type: object
