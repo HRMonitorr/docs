@@ -126,7 +126,7 @@ paths:
         - Github API
       summary: getCommit data dan insert ke database dari repository
       description: Mengambil Commit Repository
-      operationId: commit
+      operationId: getandinsert
       requestBody:
         content:
           application/json:
@@ -510,12 +510,12 @@ components:
           type: string
         email:
           type: string
+        username:
+          type: string
         phone:
           type: string
         division:
           $ref: '#/components/schemas/Division'
-        account:
-          $ref: '#/components/schemas/User'
         salary:
           $ref: '#/components/schemas/Salary'
 
