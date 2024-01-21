@@ -53,13 +53,34 @@ paths:
                 $ref: '#/components/schemas/Response'
         '405':
           description: Invalid input
-  /Login:
+  /loginafterotp:
     post:
       tags:
         - auth
       summary: Login get Token
       description: Login and Get User Token
       operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '405':
+          description: Invalid input
+  /loginotp:
+    post:
+      tags:
+        - auth
+      summary: Login get Token
+      description: Login and Get User Token
+      operationId: otp
       requestBody:
         content:
           application/json:
@@ -271,6 +292,9 @@ components:
         password:
           type: string
           example: cihuypaswort
+        phone-num:
+          type: string
+          example: string
         role:
           type: string
           example: user
